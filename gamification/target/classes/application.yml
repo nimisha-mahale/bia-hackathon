@@ -1,6 +1,0 @@
-application:
-  id: gamification
-server:
-  port: ${SERVER_PORT:8080}
-  servlet:
-    context-path: /gamification/v1
