@@ -1,0 +1,6 @@
+CREATE TABLE CUSTOMER_POINTS(
+sys_id NUMERIC AUTO_INCREMENT PRIMARY KEY,
+customer_number VARCHAR (50) NOT NULL,
+total_points NUMERIC NOT NULL,
+cumulative_points NUMERIC
+);

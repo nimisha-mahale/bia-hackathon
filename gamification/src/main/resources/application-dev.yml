@@ -1,45 +1,26 @@
 application:
-  id: si-getmsbaspartyaccountbalance
+  id: gamification
 server:
   port: ${SERVER_PORT:8080}
   servlet:
-    context-path: /party/v1
-java:
-  security:
-    krb5:
-      conf: "/etc/krb5.conf"
-javax:
-  security:
-    auth:
-      useSubjectCredsOnly: false
-  net:
-    ssl:
-      trustStore: "/etc/truststore.jks"
-      trustStoreType: ${TRUSTSTORE_TYPE:jks}
-      trustStorePasswordFile: ${TRUSTSTORE_PASSWORD_FILE:}
-      keyStore: "/keystore/keystore.jks"
-      keyStorePassword: ${KEYSTORE_PASSWORD:password}
-management:
-  server:
-    port: ${HEALTH_PORT:8888}
-    ssl:
-      enabled: ${MANAGEMENT_SERVER_SSL_ENABLED:false}
-  endpoints:
-    web:
-      base-path: ${MANAGEMENT_ENDPOINTS_WEB_BASE_PATH:/management}
-      path-mapping:
-        health: ${MANAGEMENT_ENDPOINTS_WEB_PATH-MAPPING_HEALTH:/health}
-      exposure:
-        include: health
-  endpoint:
-    health:
-      show-details: ${MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS:always}
-      sensitive: false
-jwt:
-  auth:
-    config: ${AUTH_CONFIG:service-entries.json}
-    enabled: ${AUTH_ENABLED:False}
-logging:
-  level:
-    ROOT: ${ROOT_LOG_LEVEL:INFO}
-    com.nbs.si: ${APP_LOG_LEVEL:INFO}
+    context-path: /gamification/v1
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console.enabled: true
+    console:
+      path: /h2-console
+      settings.trace: false
+      settings.web-allow-others: false
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/migration
