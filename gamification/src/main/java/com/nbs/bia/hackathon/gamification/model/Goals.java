@@ -26,5 +26,5 @@ public class Goals {
     private String eventName;
 
     @Column(name = "points")
-    private Long points;
+    private int points;
 }
