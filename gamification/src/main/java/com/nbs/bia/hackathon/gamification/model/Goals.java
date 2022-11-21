@@ -12,19 +12,19 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="GOALS")
+@Table(name = "GOALS")
 public class Goals {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="goal_id")
+    @Column(name = "goal_id")
     private Long goalId;
 
-    @Column(name="goal_name", length=50, nullable=false)
+    @Column(name = "goal_name", length = 50, nullable = false)
     private String goalName;
 
-    @Column(name="event_name", length=50, nullable=false)
+    @Column(name = "event_name", length = 50, nullable = false)
     private String eventName;
 
-    @Column(name="points")
+    @Column(name = "points")
     private Long points;
 }
