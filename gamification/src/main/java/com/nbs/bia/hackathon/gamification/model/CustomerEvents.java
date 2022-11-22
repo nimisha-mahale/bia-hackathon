@@ -11,17 +11,17 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name="CUSTOMER_EVENTS")
+@Builder(toBuilder = true)
+@Table(name = "CUSTOMER_EVENTS")
 public class CustomerEvents {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="sys_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "sys_id")
     private Long sysId;
 
-    @Column(name="customer_number", length=50, nullable=false)
+    @Column(name = "customer_number", length = 50, nullable = false)
     private String customerNumber;
 
-    @Column(name="goal_id", nullable=false)
+    @Column(name = "goal_id")
     private Long goalId;
 }

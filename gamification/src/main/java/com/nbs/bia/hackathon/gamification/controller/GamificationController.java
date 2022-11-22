@@ -1,10 +1,13 @@
 package com.nbs.bia.hackathon.gamification.controller;
 
+import com.nbs.bia.hackathon.gamification.dto.CreateEventRequest;
 import com.nbs.bia.hackathon.gamification.dto.GoalsResponse;
 import com.nbs.bia.hackathon.gamification.service.GamificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,5 +21,10 @@ public class GamificationController {
     @GetMapping(value = "/goals", produces = "application/json")
     public List<GoalsResponse> getAllGoals() {
         return gamificationService.getGoals();
+    }
+
+    @PostMapping(value = "/events", consumes = "application/json", produces = "application/json")
+    public void createEvents(@RequestBody final CreateEventRequest createEventRequest){
+        gamificationService.createEvents(createEventRequest);
     }
 }
