@@ -3,6 +3,7 @@ package com.nbs.bia.hackathon.gamification.service;
 import com.nbs.bia.hackathon.gamification.dto.CreateEventRequest;
 import com.nbs.bia.hackathon.gamification.dto.EventName;
 import com.nbs.bia.hackathon.gamification.dto.GoalsResponse;
+import com.nbs.bia.hackathon.gamification.dto.PointsResponse;
 import com.nbs.bia.hackathon.gamification.exceptions.CreateEventsException;
 import com.nbs.bia.hackathon.gamification.model.CustomerEvents;
 import com.nbs.bia.hackathon.gamification.model.CustomerPoints;
@@ -36,6 +37,14 @@ public class GamificationService {
                         .points(goal.getPoints())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    public PointsResponse getPoints(String customerNumber) {
+        Optional<CustomerPoints> customerPoints = customerPointsRepository.findByCustomerNumber(customerNumber);
+        return  PointsResponse.builder()
+                .totalPoints(customerPoints.get().getTotalPoints() )
+                .cumulativePoints(customerPoints.get().getCumulativePoints())
+                .build();
     }
 
     public void createEvents(final CreateEventRequest createEventRequest) {
